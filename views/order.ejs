@@ -1,0 +1,224 @@
+<%- include("./partials/header.ejs") %>
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>My Orders</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item active">My Orders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+    <!-- Start Products  -->
+    <div class="products-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>Your Orders</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button class="active" data-filter="*">All</button>
+                            <button data-filter=".top-featured">Cancelled</button>
+                            <button data-filter=".best-seller">Returned</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row special-list" style="margin-bottom: 50px;">
+                <%orders.forEach(function(order){%>
+                    <% if(order.status == "Cancelled"){%>
+                        <div class="card card-outline-secondary my-4 special-grid top-featured" style="width: 100%;">
+                            <div class="card-header">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p><b>Order Date</b></p>
+                                    <h3><%= order.orderDate%></h3>
+                                </div>
+                                <div class="col-4">
+                                    <p><b>Total</b></p>
+                                    <h3>Rs <%= order.totalPrice%></h3>
+                                </div>
+                                <div class="col-1">
+                                    <p></p>
+                                </div>
+                                <div class="col-3">
+                                    <p><b>Order Id</b></p>
+                                    <h3><%= order._id%></h3>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 style="padding-right: 2%; padding-top: 2%; color: red; float: right;"><b><%= order.status%></b></h1>
+                                </div>
+                                <div class="card-body col-sm-7">
+                                    <div class="media">
+                                        <div class="mr-2"> 
+                                            <img class="rounded-circle border p-1" src="<%= order.items.image%>" alt="Generic placeholder image" style="height: 100px; margin: 30px;">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="/view/<%= order.items.item%>" style="padding: 0;"><h3><b style="color: blue;"><%= order.items.itemname%></b></h3></a>
+                                            <p>Quantity: <%= order.items.quantity%></p>
+                                            <p>Price: Rs <%= order.items.price%> /kg</p>
+                                            <p>Cancelled on: <%= order.deliveryDate%></p>
+                                            <p>Return period ends on: <%= order.returnDate%></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body col-sm-5">
+                                    <h3><b>Shipping Address:</b></h3>
+                                    <p><%= order.address.name%></p>
+                                    <p><%= order.address.line%></p>
+                                    <p><%= order.address.city%>, <%= order.address.state%>, <%= order.address.country%></p>
+                                    <p><b>Mobile No.: </b><%= order.address.phone%></p>
+                                </div>
+                                <div class="card-body col-12" style="display: flex; flex-direction: row; justify-content: flex-start;">
+                                    <form action="/buyagain/<%= order._id%>" method="POST" style="display: contents;">
+                                        <button class="btn hvr-hover" style="display: block; border: none; color: white; background: goldenrod;  margin: 0 30px;">Buy Again</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                    <% if(order.status == "Returned"){%>
+                        <div class="card card-outline-secondary my-4 special-grid best-seller" style="width: 100%;">
+                            <div class="card-header">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p><b>Order Date</b></p>
+                                    <h3><%= order.orderDate%></h3>
+                                </div>
+                                <div class="col-4">
+                                    <p><b>Total</b></p>
+                                    <h3>Rs <%= order.totalPrice%></h3>
+                                </div>
+                                <div class="col-1">
+                                    <p></p>
+                                </div>
+                                <div class="col-3">
+                                    <p><b>Order Id</b></p>
+                                    <h3><%= order._id%></h3>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 style="padding-right: 2%; padding-top: 2%; color: limegreen; float: right;"><b><%= order.status%></b></h1>
+                                </div>
+                                <div class="card-body col-sm-7">
+                                    <div class="media">
+                                        <div class="mr-2"> 
+                                            <img class="rounded-circle border p-1" src="<%= order.items.image%>" alt="Generic placeholder image" style="height: 100px; margin: 30px;">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="/view/<%= order.items.item%>" style="padding: 0;"><h3><b style="color: blue;"><%= order.items.itemname%></b></h3></a>
+                                            <p>Quantity: <%= order.items.quantity%></p>
+                                            <p>Price: Rs <%= order.items.price%> /kg</p>
+                                            <p>Returned on: <%= order.deliveryDate%></p>
+                                            <p>Return period ends on <%= order.returnDate%></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body col-sm-5">
+                                    <h3><b>Shipping Address:</b></h3>
+                                    <p><%= order.address.name%></p>
+                                    <p><%= order.address.line%></p>
+                                    <p><%= order.address.city%>, <%= order.address.state%>, <%= order.address.country%></p>
+                                    <p><b>Mobile No.: </b><%= order.address.phone%></p>
+                                </div>
+                                <div class="card-body col-12" style="display: flex; flex-direction: row; justify-content: flex-start;">
+                                    <form action="/buyagain/<%= order._id%>" method="POST" style="display: contents;">
+                                        <button class="btn hvr-hover" style="display: block; border: none; color: white; background: goldenrod;  margin: 0 30px;">Buy Again</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                    <% if(order.status != "Returned" && order.status != "Cancelled"){%>
+                        <div class="card card-outline-secondary my-4 special-grid" style="width: 100%;">
+                            <div class="card-header">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p><b>Order Date</b></p>
+                                    <h3><%= order.orderDate%></h3>
+                                </div>
+                                <div class="col-4">
+                                    <p><b>Total</b></p>
+                                    <h3>Rs <%= order.totalPrice%></h3>
+                                </div>
+                                <div class="col-1">
+                                    <p></p>
+                                </div>
+                                <div class="col-3">
+                                    <p><b>Order Id</b></p>
+                                    <h3><%= order._id%></h3>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 style="padding-right: 2%; padding-top: 2%; color: limegreen; float: right;"><b><%= order.status%></b></h1>
+                                </div>
+                                <div class="card-body col-sm-7">
+                                    <div class="media">
+                                        <div class="mr-2"> 
+                                            <img class="rounded-circle border p-1" src="<%= order.items.image%>" alt="Generic placeholder image" style="height: 100px; margin: 30px;">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="/view/<%= order.items.item%>" style="padding: 0;"><h3><b style="color: blue;"><%= order.items.itemname%></b></h3></a>
+                                            <p>Quantity: <%= order.items.quantity%></p>
+                                            <p>Price: Rs <%= order.items.price%> /kg</p>
+                                            <%if(order.status != "Delivered"){%>
+                                                <p>Expected Delivery: <%= order.deliveryDate%></p>
+                                            <%}%>
+                                            <%if(order.status == "Delivered"){%>
+                                                <p>Delivered on: <%= order.deliveryDate%></p>
+                                            <%}%>
+                                            <p>Return period ends on <%= order.returnDate%></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body col-sm-5">
+                                    <h3><b>Shipping Address:</b></h3>
+                                    <p><%= order.address.name%></p>
+                                    <p><%= order.address.line%></p>
+                                    <p><%= order.address.city%>, <%= order.address.state%>, <%= order.address.country%></p>
+                                    <p><b>Mobile No.: </b><%= order.address.phone%></p>
+                                </div>
+                                <div class="card-body col-12" style="display: flex; flex-direction: row; justify-content: flex-start;">
+                                    <form action="/buyagain/<%= order._id%>" method="POST" style="display: contents;">
+                                        <button class="btn hvr-hover" style="display: block; border: none; color: white; background: goldenrod;  margin: 0 30px;">Buy Again</button>
+                                    </form>
+                                    <%if(order.status != "Delivered"){%>
+                                    <form action="/cancel/<%= order._id%>" method="POST" style="display: contents;">
+                                        <button class="btn hvr-hover" style="display: block; border: none; color: white; background: red;  margin: 0 30px;">Cancel</button>
+                                    </form>
+                                    <%}%>
+                                    <%if(order.status == "Delivered"){%>
+                                        <form action="/return/<%= order._id%>" method="POST" style="display: contents;">
+                                            <button class="btn hvr-hover" style="display: block; border: none; color: white; background: limegreen;  margin: 0 30px;">Return</button>
+                                        </form>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                <%})%>
+            </div>
+        </div> 
+    </div>
+    <!-- End Products  -->
+
+<%- include("./partials/footer.ejs") %>

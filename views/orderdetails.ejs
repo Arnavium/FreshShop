@@ -1,0 +1,117 @@
+<%- include("./partials/seller/header.ejs") %>
+    <!-- Navigation-->
+    <%- include("./partials/seller/nav.ejs") %>
+    <div class="content-wrapper">
+
+        
+<!--  ////////HERE///////////////////////// -->
+<div class="details-container">
+    <h1 style="text-align: center;">Order Details</h1>
+    <hr style="text-align: center; width: 80%;">
+
+    <div class="tab-pane fade show active" id="order" role="tabpanel" aria-labelledby="nav-home-tab">
+		<div id="" role="tablist">
+			<div class="row ">
+				<div class="col-md-6" style="padding: 45px;">
+					<div class="card">
+						<div class="card-header" role="tab" id="headingOne" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<h5 class="mb-0">
+								Buyer Info
+							</h5>
+						</div>
+
+						<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+							<div class="card-body">
+								<form>
+
+                                    <dl class="row">
+                                        <dd class="col-sm-4">Name :</dd>
+                                        <dt class="col-sm-8"><%=order.address.name%></dt>
+                                        <dd class="col-sm-4">E-mail :</dd>
+                                        <dt class="col-sm-8"><%=order.address.email%></dt>
+                                        <dd class="col-sm-4">Phone no :</dd>
+                                        <dt class="col-sm-8"><%=order.address.phone%></dt>
+                                    </dl>
+
+								</form>
+							</div>
+						</div>
+					</div>
+
+                    <div class="card">
+						<div class="card-header collapsed" role="tab" id="headingTwo" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+							<h5 class="mb-0">
+								Shipping Address
+							</h5>
+						</div>
+						<div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+							<div class="card-body">
+								<form>
+
+                                    <dl class="row">
+                                        <dd class="col-sm-4">Address :</dd>
+                                        <dt class="col-sm-8"><%=order.address.line%></dt>
+                                        <dd class="col-sm-4">City :</dd>
+                                        <dt class="col-sm-8"><%=order.address.city%></dt>
+                                        <dd class="col-sm-4">State :</dd>
+                                        <dt class="col-sm-8"><%=order.address.state%></dt>
+                                        <dd class="col-sm-4">Country :</dd>
+                                        <dt class="col-sm-8"><%=order.address.country%></dt>
+                                        <dd class="col-sm-4">Postal Code :</dd>
+                                        <dt class="col-sm-8"><%=order.address.postal%></dt>
+                                    </dl>
+
+								</form>
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</div>
+
+				<div class="col-md-6" style="padding: 45px;">
+					<div class="card">
+						<div class="card-header">
+							<div class="d-inline h4">Order Details</div>
+						</div>
+						<div class="card-body">
+                            <dl class="row">
+                            <img class="product-img" src="<%=order.items.image%>" alt="product" />
+                            </dl>
+
+							<dl class="row">
+								<dd class="col-sm-4">Product Name :</dd>
+								<dt class="col-sm-8"><%=order.items.itemname%></dt>
+                                <dd class="col-sm-4">Order ID :</dd>
+								<dt class="col-sm-8"><%=order._id%></dt>
+								<dd class="col-sm-4">Quantity :</dd>
+								<dt class="col-sm-8"><%=order.items.itemname%></dt>
+                                <dd class="col-sm-4">Total Price :</dd>
+								<dt class="col-sm-8"><%=order.totalPrice%></dt>
+							</dl>
+							<dl class="row">
+								
+							</dl>
+							<dl class="row">
+								<dd class="col-sm-4">Placed on :</dd>
+								<dt class="col-sm-8"><%=order.orderDate%></dt>
+								<dd class="col-sm-4">Payment Method :</dd>
+								<dt class="col-sm-8"><%=order.payment%></dt>
+                                <dd class="col-sm-4">Order Status :</dd>
+								<dt class="col-sm-8"><%=order.status%></dt>
+							</dl>
+							
+							
+							</div>
+						</div>
+					</div>
+				</div>
+	</div>
+    </div>       
+
+    </div>
+
+    <%- include("./partials/seller/footer.ejs") %>
+    

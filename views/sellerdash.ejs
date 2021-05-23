@@ -1,0 +1,56 @@
+<%- include("./partials/seller/header.ejs") %>
+    <%- include("./partials/seller/nav.ejs") %>
+
+    <!-- Navigation-->
+    <div class="content-wrapper">
+      <div class="container-fluid">
+         <div style="margin: 2em 0em;">
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table"></i> Orders Table </div>
+            <div class="card-body">
+              <div class="table-responsive">
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+              <tr>
+                  <th>S.No</th>
+                  <th>Order ID</th>
+                  <th>Product Name</th>
+                  <th>Order Date</th>
+                  <th>Total Amount</th>
+                  <th>Status</th>    
+              </tr>
+          </thead>
+          <tbody>
+            <%for(var i=0;i<orders.length;i++){%>
+              <tr>
+                  <td><%=i+1%></td>
+                  <td><a href="/seller/orders/<%=orders[i]._id%>"><%=orders[i]._id%></a></td>
+                  <td><%=orders[i].items.itemname%></td>
+                  <td><%=orders[i].orderDate%></td>
+                  <td>Rs <%=orders[i].totalPrice%></td>
+                  <form action="/seller/orders/<%=orders[i]._id%>" method="POST">
+                    <td> 
+                      <select id="status" name="status" >
+                        <option value="<%=orders[i].status%>" selected><%=orders[i].status%> - current status</option>
+                        <option value="Placed" >Placed</option>
+                        <option value="On The Way" >On The Way</option>
+                        <option value="Delivered" >Delivered</option>
+                        <option value="Cancelled" >Cancel</option>
+                        
+                      </select>  
+                      <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                    </td>
+                  </form>
+              </tr>
+              <%}%>
+          </tbody>
+      </table>
+              </div>
+            </div>
+          </div>
+       </div>
+
+
+      </div>
+      <%- include("./partials/seller/footer.ejs") %>

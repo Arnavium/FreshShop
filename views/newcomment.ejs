@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>Freshshop</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/public/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/public/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/public/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/public/css/custom.css">
+    <link rel="stylesheet" href="/public/css/login&security.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+</head>
+
+<body>
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="our-link" style="display: flex; justify-content: start;">
+                        <ul>
+                            <li><a href="#"><i class="fas fa-building"></i> Freshshop </a></li>
+                            <li><a href="#"><i class="fas fa-location-arrow"></i> Our Location</a></li>
+                            <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="display: flex; justify-content: flex-end;">
+                    <div class="our-link">
+                        <ul>
+                            <%if(currentUser != null){%>
+                                <li><a href="/logout"><i class="fas fa-sign-out-alt s_color"></i> Logout</a></li>
+                            <%}else{%>
+                                <li><a href="/register"><i class="fas fa-sign-in-alt s_color" style="font-size: 20px;"></i> Register/Login</a></li>
+                            <%}%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="/home"><img src="../public/images/logo.png" class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contactUs">Contact Us</a></li>
+                        <li class="search-product">
+                            <form action="search">
+                                <input class="form-control" placeholder="Search..." type="text" name="search" required>
+                                <input type="hidden" name="sortby" id="sortby" value="title"></input>
+                                <input type="hidden" name="orderby" id="orderby" value="ASC"></input>
+                                <button type="submit" style="height: auto;"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <%if(currentUser != null){%>
+                <div class="attr-nav">
+                    <ul>
+                        <li class="side-menu">
+							<a href="/profile">
+								<i class="fa fa-user"></i>
+								<p><%= currentUser.username %></p>
+							</a>
+						</li>
+                        <li class="side-menu">
+							<a href="/cart">
+								<i class="fa fa-shopping-bag"></i>
+								<!-- <span class="badge">3</span> -->
+								<p>My Cart</p>
+							</a>
+						</li>
+                    </ul>
+                </div>
+                <%}%>
+                <!-- End Atribute Navigation -->
+            </div>
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Add Comment</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/view/<%= product._id%>">Product</a></li>
+                        <li class="breadcrumb-item active">Add Comment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+    <div class="container">
+        <div class="row gutters" style="margin: 5%;">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                </div>
+                                <h5 class="user-name"><%=user.username%></h5>
+                                <h6 class="user-email"><%=user.email%></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form action="/comments/new/<%= product._id%>" method="POST" style="display:contents">
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="text-align: center;">
+                                    <h3 class="mb-2" style="color: limegreen;">Adding Comments to <em style="color: black;">" <%= product.name%> "</em></h3>
+                                </div>
+                                <textarea name="comment" id="comment" cols="30" rows="6" style="width: 100%; margin: 2%; padding: 2%;"></textarea>
+                            </div>
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div style="display: flex; justify-content: center;">
+                                        <button type="submit" class="btn hvr-hover" style="color: white; border: none; outline: none;">Add Comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<%- include("./partials/footer.ejs") %>

@@ -1,0 +1,28 @@
+<%- include("./partials/seller/header.ejs") %>
+
+  <%- include("./partials/seller/nav.ejs") %>
+
+
+        <div class="content-wrapper">
+
+            <h1 style="text-align: center;">Update Category</h1>
+            <hr style="text-align: center; width: 80%;">
+
+
+            <div class="container-product">  
+                <form id="contact" action="/seller/categories/<%=category._id%>?_method_PUT" method="post">
+                  <h3>Update Category</h3>
+                  <h4>Update the category's Details below</h4>
+                  <fieldset>
+                    <input name="category[name]" value="<%=category.name%>" placeholder="Category Name" type="text" tabindex="1" required autofocus>
+                  </fieldset>
+                  <fieldset>
+                    <input name="category[image]" value="<%=category.image%>" placeholder="Image URL" type="text" tabindex="2" required>
+                  </fieldset>
+                    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Update</button>
+                  
+                </form>
+              </div>
+
+
+  <%- include("./partials/seller/footer.ejs") %>

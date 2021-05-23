@@ -1,0 +1,165 @@
+<%- include("./partials/header.ejs") %>
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Searched for <em>"<%=name%>"</em></h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item active">Search</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <form action="/search">
+                            <div class="product-item-filter row">
+                                <div class="col-12 col-sm-5">
+                                    <div class="toolbar-sorter-right">
+                                        <span>Sort by </span>
+                                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" name="sortby">
+                                            <option data-display="Select" value="<%=sort%>"><%=sort%> - selected</option>
+                                            <option value="title">title</option>
+                                            <option value="price">price</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-5">
+                                    <div class="toolbar-sorter-right">
+                                        <span>Order by </span>
+                                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD" name="orderby">
+                                            <option data-display="Select" value="<%=order%>"><%=order%> - selected</option>
+                                            <option data-display="Select" value="ASC">ASC</option>
+                                            <option value="DESC">DESC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-sm-2 text-center">
+                                    <button type="submit" class="btn hvr-hover" style="height: 40px; color: white; border: none;">Apply</button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="search" id="search" value="<%=name%>"></input>
+                        </form>
+
+                        <div class="product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        <% if(products.length>0){%>
+                                        <%products.forEach(function(product){%>
+                                            <% if(product.type == "New"){%>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="new">New</p>
+                                                            </div>
+                                                            <img src="<%= product.imageURL[0]%>" class="img-fluid" alt="Image" style="height: 300px; width: 100%;">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="/view/<%= product._id%>" data-toggle="tooltip" data-placement="right" title="View"><i style="padding-left: 4px;" class="fas fa-eye"></i></a></li>
+                                                                    <li>
+                                                                        <a data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                                                            <form action="/wish/<%= product._id%>" method="POST" >
+                                                                                <input type="submit" class="wish wishbtn fas fa-heart" value="&#xf004">
+                                                                            </form>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <form action="/add/<%= product._id%>" method="POST">
+                                                                    <input type="submit" value="Add to Cart" class="cart">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4><%= product.name%></h4>
+                                                            <h5>Rs <%= product.price%>/kg</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%}%>
+                                            <% if(product.type == "On Sale"){%>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="new">Sale</p>
+                                                            </div>
+                                                            <img src="<%= product.imageURL[0]%>" class="img-fluid" alt="Image" style="height: 300px; width: 100%;">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="/view/<%= product._id%>" data-toggle="tooltip" data-placement="right" title="View"><i style="padding-left: 4px;" class="fas fa-eye"></i></a></li>
+                                                                    <li>
+                                                                        <a data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                                                            <form action="/wish/<%= product._id%>" method="POST" >
+                                                                                <input type="submit" class="wish wishbtn fas fa-heart" value="&#xf004">
+                                                                            </form>
+                                                                        </a >
+                                                                    </li>
+                                                                </ul>
+                                                                <form action="/add/<%= product._id%>" method="POST">
+                                                                    <input type="submit" value="Add to Cart" class="cart">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4><%= product.name%></h4>
+                                                            <h5>Rs <%= product.price%>/kg</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%}%>
+                                            <% if(product.type == "No Sale"){%>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <img src="<%= product.imageURL[0]%>" class="img-fluid" alt="Image" style="height: 300px; width: 100%;">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="/view/<%= product._id%>" data-toggle="tooltip" data-placement="right" title="View"><i style="padding-left: 4px;" class="fas fa-eye"></i></a></li>
+                                                                    <li>
+                                                                        <a data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                                                            <form action="/wish/<%= product._id%>" method="POST" >
+                                                                                <input type="submit" class="wish wishbtn fas fa-heart" value="&#xf004">
+                                                                            </form>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <form action="/add/<%= product._id%>" method="POST">
+                                                                    <input type="submit" value="Add to Cart" class="cart">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text">
+                                                            <h4><%= product.name%></h4>
+                                                            <h5>Rs <%= product.price%>/kg</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%}%>
+                                        <%})%>
+                                        <%}else{%>
+                                            <h1>No Products found</h1>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Shop Page -->
+    <%- include("./partials/footer.ejs") %>

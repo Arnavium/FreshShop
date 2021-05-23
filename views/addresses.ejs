@@ -1,0 +1,62 @@
+<%- include("./partials/header.ejs") %>
+
+<!-- Start All Title Box -->
+<link rel="stylesheet" href="../public/css/address.css">
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Your Addresses</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item active">Your Addresses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End All Title Box -->
+<div class="content">
+    <div class="container" style="margin-top: 5%;">
+        <!-- end row -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="text-center card-box">
+                    <div>
+                        <div class="service-icon">
+                            <a href="/add/address"> <i class="fas fa-plus-square"></i> </a>
+                        </div>
+                        <div class="service-desc">
+                            <h4>Add New</h4>
+                            <p>Add addresses for orders and gifts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+            <% user.address.forEach(function(address){%>
+                <div class="col-lg-4">
+                    <div class="card-box">
+                        <div style="display: flex; flex-direction: column;">
+                            <p><b><%= address.name%></b></p>
+                            <p><%= address.line%></p>
+                            <p><%= address.city%></p>
+                            <p><%= address.state%></p>
+                            <p><%= address.country%></p>
+                            <p><%= address.postal%></p>
+                        </div>
+                        <div style="display: contents;">
+                            <a href="/edit/<%= address._id%>" id="link1"><b>Edit</b></a> 
+                            <form action="/remove/address/<%= address._id%>" method="POST" style="display: inline;">
+                                <button id="link2" style="border: none; background: white;"><b>Remove</b></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </div>
+    </div>
+    <!-- container -->
+</div>
+
+<%- include("./partials/footer.ejs") %>

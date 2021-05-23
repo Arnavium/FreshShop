@@ -1,0 +1,123 @@
+<%- include("./partials/header.ejs") %>
+    <!-- Start Products  -->
+    <div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1><%= category.name%></h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">All</button>
+                        <button data-filter=".top-featured">New Arrivals</button>
+                        <button data-filter=".best-seller">Best seller</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row special-list">
+            <%products.forEach(function(product){%>
+                <% if(product.type == "New"){%>
+                    <div class="col-lg-3 col-md-6 special-grid top-featured">
+                        <div class="products-single fix">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="new">New</p>
+                                </div>
+                                <img src="<%= product.imageURL[0]%>" class="img-fluid" alt="Image" style="height: 200px; width: 100%;">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/view/<%= product._id%>" data-toggle="tooltip" data-placement="right" title="View"><i style="padding-left: 4px;" class="fas fa-eye"></i></a></li>
+                                        <li>
+                                            <a data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                                <form action="/wish/<%= product._id%>" method="POST" >
+                                                    <input type="submit" class="wish wishbtn fas fa-heart" value="&#xf004">
+                                                </form>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <form action="/add/<%= product._id%>" method="POST">
+                                        <input type="submit" value="Add to Cart" class="cart">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4><%= product.name%></h4>
+                                <h5>Rs <%= product.price%>/kg</h5>
+                            </div>
+                        </div>
+                    </div>
+                <%}%>
+                <% if(product.type == "On Sale"){%>
+                    <div class="col-lg-3 col-md-6 special-grid best-seller">
+                        <div class="products-single fix">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="new">Sale</p>
+                                </div>
+                                <img src="<%= product.imageURL[0]%>" class="img-fluid" alt="Image" style="height: 200px; width: 100%;">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/view/<%= product._id%>" data-toggle="tooltip" data-placement="right" title="View"><i style="padding-left: 4px;" class="fas fa-eye"></i></a></li>
+                                        <li>
+                                            <a data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                                <form action="/wish/<%= product._id%>" method="POST" >
+                                                    <input type="submit" class="wish wishbtn fas fa-heart" value="&#xf004">
+                                                </form>
+                                            </a >
+                                        </li>
+                                    </ul>
+                                    <form action="/add/<%= product._id%>" method="POST">
+                                        <input type="submit" value="Add to Cart" class="cart">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4><%= product.name%></h4>
+                                <h5>Rs <%= product.price%>/kg</h5>
+                            </div>
+                        </div>
+                    </div>
+                <%}%>
+                <% if(product.type == "No Sale"){%>
+                    <div class="col-lg-3 col-md-6 special-grid">
+                        <div class="products-single fix">
+                            <div class="box-img-hover">
+                                <img src="<%= product.imageURL[0]%>" class="img-fluid" alt="Image" style="height: 200px; width: 100%;">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/view/<%= product._id%>" data-toggle="tooltip" data-placement="right" title="View"><i style="padding-left: 4px;" class="fas fa-eye"></i></a></li>
+                                        <li>
+                                            <a data-toggle="tooltip" data-placement="right" title="Add to Wishlist">
+                                                <form action="/wish/<%= product._id%>" method="POST" >
+                                                    <input type="submit" class="wish wishbtn fas fa-heart" value="&#xf004">
+                                                </form>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <form action="/add/<%= product._id%>" method="POST">
+                                        <input type="submit" value="Add to Cart" class="cart">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4><%= product.name%></h4>
+                                <h5>Rs <%= product.price%>/kg</h5>
+                            </div>
+                        </div>
+                    </div>
+                <%}%>
+            <%})%>
+        </div>
+    </div>
+</div>
+<!-- End Products  -->
+
+<%- include("./partials/footer.ejs") %>

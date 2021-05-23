@@ -1,0 +1,58 @@
+<%- include("./partials/seller/header.ejs") %>
+
+
+    <!-- Navigation-->
+<%- include("./partials/seller/nav.ejs") %>
+
+
+<div class="content-wrapper">
+
+
+    <h1 style="text-align: center;">Categories</h1>
+    <hr style="text-align: center; width: 80%;">
+
+
+    <div style="margin: 2em 1em;">
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Categories Table 
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <% if(categories != null && categories.length>0){%>
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th> </th>
+                                
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% categories.forEach(function(category){%>
+                            <tr>
+                                <td><%=category.name%></td>
+                                <td><img class="inventory-img" src="<%=category.image%>"></td>
+                                <td><a href="/seller/categories/<%=category._id%>/update" class="btn btn-primary">Update</a>
+                                    <br> 
+                                    <form action="/seller/categories/<%=category._id%>?_method=DELETE" method="POST" st>
+                                        <button class="btn btn-danger mt-2">Delete</button></a>
+                                    </form>
+                            </tr>
+                            <% }) %>
+                            <%}else{%>
+                                <tr>
+                                No Categories
+                                </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include("./partials/seller/footer.ejs") %>

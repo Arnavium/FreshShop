@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Site Metas -->
+  <title>Freshshop</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Site Icons -->
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="../public/images/apple-touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="/public/css/seller.css" />
+    <link rel="stylesheet" href="/public/css/sellerprofile.css" />
+
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <!-- Navigation-->
+  <%- include("./partials/seller/nav.ejs") %>
+  <div class="content-wrapper">
+
+    <div class="form-area">
+        <form action="/seller/dashboard" method="POST">
+            <div class="form-header">
+
+                <div class="bottom-header" style="padding-top: 2em;">
+
+                </div>
+            </div>
+        
+            <div class="form-body">   
+                <div class="multitab-form-area">
+                    <div class="tab-links-area">
+                        <h1>Seller Details</h1>
+                        
+                        <hr>
+                        <ul>
+                            <li><a data-toggle="formtab" href="#userProfile" class="active">Profile</a></li>
+                            <li><a data-toggle="formtab" href="#Address"> Address</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-form-area">
+                        <div class="tabs-panels active" id="userProfile">
+                            <div class="tab-part">
+                                <h4><%=seller.firstname%> <%=seller.lastname%></h4>
+                                <hr>
+                                <div class="devider-row">
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>First Name</label>
+                                            <input type="text" name='seller[firstname]' value="<%=seller.firstname%>" placeholder="Enter firstname">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>Email ID</label>
+                                            <input type="text" name='seller[email]' value="<%=seller.email%>" placeholder="Enter email">
+                                        </div>
+                                    </div>
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>Last Name</label>
+                                            <input type="text" name='seller[lastname]' value="<%=seller.lastname%>" placeholder="Enter lastname">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>Phone Number</label>
+                                            <input type="text" name='seller[phone]' value="<%=seller.phone%>" placeholder="Enter mobile no">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="next-btn">
+                                <a data-toggle="formtab" href="#Address">Next</a>
+                            </div>
+                        </div>
+                        <div class="tabs-panels" id="Address">
+                            <%if(seller.address[0] == null){%>
+                            <div class="tab-part">
+                                <h4>Residential Address</h4>
+                                <hr>
+                                <div class="devider-row">
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>Name</label>
+                                            <input type="text" name='seller[address][0][name]' placeholder="Enter name">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>Address Line</label>
+                                            <input type="text" name='seller[address][0][line]' placeholder="Enter Address">
+                                        </div>
+                                    </div>
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>City</label>
+                                            <input type="text" name='seller[address][0][city]' placeholder="Enter city">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>State</label>
+                                            <input type="text" name='seller[address][0][state]' placeholder="Enter state">
+                                        </div>
+                                    </div>
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>Country</label>
+                                            <input type="text" name='seller[address][0][country]' placeholder="Enter country">
+                                        </div>
+                                    </div>
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>Pin Code</label>
+                                            <input type="text" name='seller[address][0][postal]' placeholder="Enter pincode">
+                                        </div>
+                                    </div>
+                                </div>
+                            <%}else{%>
+                            <div class="tab-part">
+                                <h4>Residential Address</h4>
+                                <hr>
+                                <div class="devider-row">
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>Name</label>
+                                            <input type="text" name='seller[address][0][name]' value="<%=seller.address[0].name%>" placeholder="Enter name">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>Address Line</label>
+                                            <input type="text" name='seller[address][0][line]' value="<%=seller.address[0].postal%>" placeholder="Enter address">
+                                        </div>
+                                    </div>
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>City</label>
+                                            <input type="text" name='seller[address][0][city]'  value="<%=seller.address[0].city%>" placeholder="Enter city">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>State</label>
+                                            <input type="text" name='seller[address][0][state]' value="<%=seller.address[0].state%>" placeholder="Enter state">
+                                        </div>
+                                    </div>
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>Country</label>
+                                            <input type="text" name='seller[address][0][country]' value="<%=seller.address[0].country%>" placeholder="Enter country">
+                                        </div>
+                                    </div>
+                                    <div class="half-2">
+                                        <div class="form-field">
+                                            <label>Pin Code</label>
+                                            <input type="text" name='seller[address][0][postal]' value="<%=seller.address[0].postal%>" placeholder="Enter pincode">
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+                            </div>
+                            <div class="next-btn">
+                                <button type="submit">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+    </div>
+    <footer class="sticky-footer">
+        <div class="container">
+          <div class="text-center">
+            <small>FreshShop</small>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Logout Modal-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" href="/logout">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+      <!-- SCRIPTS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
+      <script>
+        $(document).ready(function() {
+      $('#example').DataTable();
+          } );
+      </script>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+      <script>
+          $('a[data-toggle="formtab"]').click(function(){
+    var targetId = $(this).attr('href');
+
+    $('.tabs-panels').removeClass('active')
+    $('a[data-toggle="formtab"]').removeClass('active');
+    
+    $(targetId).addClass('active');
+	$('a[href="'+targetId+'"]').addClass('active')
+
+	
+
+});
+      </script>
+      
+    </body>
+    </html>

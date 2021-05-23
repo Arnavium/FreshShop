@@ -1,0 +1,82 @@
+<%- include("./partials/header.ejs") %>
+        <!-- Start All Title Box -->
+    <link rel="stylesheet" href="../public/css/login&security.css">
+        <div class="all-title-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Login & Security</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                            <li class="breadcrumb-item active">Login & Security</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End All Title Box -->
+        <div class="container">
+            <div class="row gutters" style="margin: 5%;">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="account-settings">
+                                <div class="user-profile">
+                                    <div class="user-avatar">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                    </div>
+                                    <h5 class="user-name"><%=user.username%></h5>
+                                    <h6 class="user-email"><%=user.email%></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="/profile/update" method="POST" style="display:contents">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="row gutters">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <h6 class="mb-2" style="color: limegreen;">Personal Details</h6>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" placeholder="Enter first name" value="<%=user.firstname%>" name="user[firstname]">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name</label>
+                                            <input type="text" class="form-control" id="lastname" placeholder="Enter last name" value="<%=user.lastname%>" name="user[lastname]">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="eMail">Email</label>
+                                            <input type="email" class="form-control" id="eMail" placeholder="Enter email ID" value="<%=user.email%>" name="user[email]">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" class="form-control" id="phone" placeholder="Enter phone number" value="<%=user.phone%>" name="user[phone]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gutters">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div style="display: flex; justify-content: center;">
+                                            <button type="submit" class="btn hvr-hover" style="color: white; border: none; outline: none;">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+<%- include("./partials/footer.ejs") %>

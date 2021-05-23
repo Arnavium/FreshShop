@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../public/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/register.css">
+    <script src="https://kit.fontawesome.com/3bb9d2c9bc.js" crossorigin="anonymous"></script>
+    <title>Freshshop</title>
+</head>
+<body class="has-bg-img">
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="/register" method="POST">
+			<h1>Create Account</h1>
+			<input type="username" placeholder="Username" name="username" required/>
+			<input type="password" placeholder="Password" name="password" required/>
+			<div style="display: flex; justify-content: flex-start; margin: 20px;">
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="customRadioInline1" name="category" class="custom-control-input" value="User" required>
+					<label class="custom-control-label" for="customRadioInline1">User</label>
+				</div>
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="customRadioInline2" name="category" class="custom-control-input" value="Seller">
+					<label class="custom-control-label" for="customRadioInline2">Seller</label>
+				</div>
+			</div>
+			<button class="hvr-hover">Register</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/login" method="POST">
+			<h1>Login</h1>
+			<input type="username" placeholder="Username"  name="username" required/>
+			<input type="password" placeholder="Password"  name="password" required/>
+			<a href="#">Forgot your password?</a>
+			<button class="hvr-hover">Login</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<div>
+					<button class="ghost hvr-hover" id="signIn">Login</button>
+					<a href="/home"><button class="ghost hvr-hover" style="margin: 5px;"><i class="fas fa-home"></i></button></a>
+				</div>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<div>
+					<button class="ghost hvr-hover" id="signUp">Register</button>
+					<a href="/home"><button class="ghost hvr-hover" style="margin: 5px;"><i class="fas fa-home"></i></button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="../public/js/register.js"></script>
+</html>

@@ -1,0 +1,50 @@
+<%- include("./partials/seller/header.ejs") %>
+
+  <%- include("./partials/seller/nav.ejs") %>
+
+
+      <div class="content-wrapper">
+      
+      <div class="container-product">  
+        <form id="contact" action="/seller/addproduct" method="post">
+          <h3>Add Product</h3>
+          <h4>Add your product's Details below</h4>
+          <fieldset>
+            <input name="name" placeholder="Product Name" type="text" tabindex="1" required autofocus>
+          </fieldset>
+          <fieldset>
+            <input name="imageURL1" placeholder="Image URL 1" type="text" tabindex="2" required>
+          </fieldset>
+          <fieldset>
+            <input name="imageURL2" placeholder="Image URL 2" type="text" tabindex="3" required>
+          </fieldset>
+          <fieldset>
+            <input name="imageURL3" placeholder="Image URL 3" type="text" tabindex="4" required>
+          </fieldset>
+          <fieldset>
+            <input name="price" placeholder="Price ( Rs.)" type="number" tabindex="5" required>
+          </fieldset>
+          <fieldset>
+            <textarea name="description" placeholder="Product's Description" tabindex="6" required></textarea>
+          </fieldset>
+          <fieldset>
+            <!-- <input name="category" placeholder="Category" type="text" tabindex="6" required> -->
+            <select id="category" name="category" >
+              <%categories.forEach(function(category){%>
+              <option value="<%= category.name %>"><%= category.name %></option>
+              <% }) %>
+            </select>
+          </fieldset>
+            <fieldset>
+                <select id="type" name="type" >
+                    <option value="No Sale">No Sale</option>
+                    <option value="New">New</option>
+                    <option value="On Sale">On Sale</option>
+                </select>
+          </fieldset>
+          <fieldset>
+            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+          </fieldset>
+        </form>
+      </div>
+      <%- include("./partials/seller/footer.ejs") %>

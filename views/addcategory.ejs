@@ -1,0 +1,21 @@
+<%- include("./partials/seller/header.ejs") %>
+
+  <%- include("./partials/seller/nav.ejs") %>
+
+
+        <div class="content-wrapper">
+            <div class="container-product">  
+                <form id="contact" action="/seller/addcategory" method="post">
+                  <h3>Add Category</h3>
+                  <h4>Enter the category's Details below</h4>
+                  <fieldset>
+                    <input name="category[name]" placeholder="Category Name" type="text" tabindex="1" required autofocus>
+                  </fieldset>
+                  <fieldset>
+                    <input name="category[image]" placeholder="Image URL" type="text" tabindex="2" required>
+                  </fieldset>
+                    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">ADD</button>
+                </form>
+              </div>
+          
+<%- include("./partials/seller/footer.ejs") %>

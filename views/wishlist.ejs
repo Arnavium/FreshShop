@@ -1,0 +1,75 @@
+<%- include("./partials/header.ejs") %>
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Wishlist</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">Wishlist</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Wishlist  -->
+    <div class="wishlist-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive">
+                        <% if(wish != null && wish.items.length>0){%>
+                        <table class="table">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Price (/kg)</th>
+                                    <th>Add Item</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%wish.items.forEach(function(item){ %>
+                                <tr style="text-align: center;">
+                                    <td class="thumbnail-img">
+                                        <a href="#">
+                                            <img class="img-fluid" src="<%=item.image%>" alt="" />
+                                        </a>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a href="/view/<%=item.item%>">
+                                            <%=item.itemname%>
+                                        </a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p>Rs <%=item.price%></p>
+                                    </td>
+                                    <td class="add-pr">
+                                        <form action="/add/<%=item.item%>" method="POST">
+                                            <button class="btn hvr-hover" style="color: white; border: none;">Add to Cart</button>
+                                        </form>
+                                    </td>
+                                    <td class="remove-pr">
+                                        <form action="/wishremove/<%=item.item%>" method="POST">
+                                            <button class="remove"><i class="fas fa-times"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <%})%>
+                            </tbody>
+                        </table>
+                        <%}else{%>
+                            <h1>No Products</h1>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Wishlist -->
+<%- include("./partials/footer.ejs") %>

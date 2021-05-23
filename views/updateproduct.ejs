@@ -1,0 +1,53 @@
+<%- include("./partials/seller/header.ejs") %>
+  <%- include("./partials/seller/nav.ejs") %>
+
+
+        <div class="content-wrapper">
+
+            <h1 style="text-align: center;">Update Product</h1>
+            <hr style="text-align: center; width: 80%;">
+
+
+            <div class="container-product">  
+                <form id="contact" action="/seller/products/<%=product._id%>?_method_PUT" method="post">
+                  <h3>Update Product</h3>
+                  <h4>Update the product's Details below</h4>
+                  <fieldset>
+                    <input name="product[name]" value="<%=product.name%>" placeholder="Product Name" type="text" tabindex="1" required autofocus>
+                  </fieldset>
+                  <fieldset>
+                    <input name="product[imageURL][0]" value="<%=product.imageURL[0]%>" placeholder="Image URL 1" type="text" tabindex="2" required>
+                  </fieldset>
+                  <fieldset>
+                    <input name="product[imageURL][1]" value="<%=product.imageURL[1]%>" placeholder="Image URL 2" type="text" tabindex="3" required>
+                  </fieldset>
+                  <fieldset>
+                    <input name="product[imageURL][2]" value="<%=product.imageURL[2]%>" placeholder="Image URL 3" type="text" tabindex="4" required>
+                  </fieldset>
+                  <fieldset>
+                    <input name="product[price]" value="<%=product.price%>" placeholder="Price ( Rs.)" type="number" tabindex="5" required>
+                  </fieldset>
+                  <fieldset>
+                    <textarea name="product[description]" tabindex="6" required><%=product.description%></textarea>
+                  </fieldset>
+                  <fieldset>
+                        <select id="category" name="product[category]" >
+                        <option value="<%=product.category%>"><%=product.category%> - previously selected</option>
+                        <%categories.forEach(function(category){%>
+                            <option value="<%= category.name %>"><%= category.name %></option>
+                        <% }) %>
+                        </select>
+                  </fieldset>
+                  <fieldset>
+                    <select id="type" name="product[type]" >
+                        <option value="<%=product.type%>"><%=product.type%> - previously selected</option>
+                        <option value="No Sale">No Sale</option>
+                        <option value="New">New</option>
+                        <option value="On Sale">On Sale</option>
+                    </select>
+                  </fieldset>
+                  <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Update</button>
+                  
+                </form>
+              </div>
+<%- include("./partials/seller/footer.ejs") %>
