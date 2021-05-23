@@ -17,7 +17,6 @@ var express                 = require("express"),
 
 
 var app = express();
-var port = 4000;
 // mongoose.connect("mongodb://localhost:27017/ecommerce",{useNewUrlParser:true,useUnifiedTopology: true,useFindAndModify: false});
 mongoose.connect("mongodb+srv://Arnav:Arnav2000@cluster0-0eldl.mongodb.net/FreshShop?retryWrites=true&w=majority",{useNewUrlParser:true,useUnifiedTopology: true,useFindAndModify: false});
 
@@ -51,6 +50,6 @@ app.use("/seller",sellerroutes);
 app.use("/search",searchroutes);
 app.use("/comments",commentroutes);
 app.use(orderroutes)
-app.listen(port, function(){
-    console.log("connected to port : ",port);
-});
+
+let port = process.env.PORT||4000;
+app.listen(port);
